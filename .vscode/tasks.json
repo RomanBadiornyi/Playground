@@ -5,10 +5,10 @@
     "tasks": [
         {
             "group": "build",
-            "label": "Build.FSharpPlayground",
+            "label": "Build.Playground",
             "args": [
                 "build",
-                "${workspaceFolder}/FSharpPlayground",
+                "${workspaceFolder}",
                 "/consoleloggerparameters:NoSummary"
             ],
             "type": "shell",			

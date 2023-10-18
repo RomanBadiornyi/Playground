@@ -5,7 +5,7 @@
             "name": "Run.FSharpPlayground",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "Build.FSharpPlayground",
+            "preLaunchTask": "Build.Playground",
             "program": "${workspaceRoot}/FSharpPlayground/bin/Debug/net7.0/FSharpPlayground.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
