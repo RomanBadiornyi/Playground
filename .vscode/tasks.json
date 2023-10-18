@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "command": "dotnet",
+    "args": [],	
+    "tasks": [
+        {
+            "group": "build",
+            "label": "Build.FSharpPlayground",
+            "args": [
+                "build",
+                "${workspaceFolder}/FSharpPlayground",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "type": "shell",			
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

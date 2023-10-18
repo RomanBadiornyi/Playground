@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [        
+        {
+            "name": "Run.FSharpPlayground",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build.FSharpPlayground",
+            "program": "${workspaceRoot}/FSharpPlayground/bin/Debug/net7.0/FSharpPlayground.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": "Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}
