@@ -1,3 +1,8 @@
 {
-    "dotnet.defaultSolution": "CSharpPlayground.sln"
+    "dotnet.defaultSolution": "CSharpPlayground.sln",
+    "cSpell.words": [
+        "isin",
+        "Skippable"
+    ],
+    "editor.inlayHints.enabled": "offUnlessPressed"
 }

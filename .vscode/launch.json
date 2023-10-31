@@ -14,6 +14,18 @@
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
+            "name": "Run.Alphavantage",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build.Playground",
+            "program": "${workspaceRoot}/Alphavantage/bin/Debug/net7.0/Alphavantage.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },        
+        {
             "name": "Attach",
             "type": "coreclr",
             "request": "attach",

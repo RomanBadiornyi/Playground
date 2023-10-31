@@ -2,10 +2,12 @@
 open System;
 
 //wait for keyboard input
-let waitKeyboard() : uint =
-    match Console.IsOutputRedirected with
-        | false -> (uint)(Console.ReadKey().Key)
+let waitKeyboard() =
+    match (not Console.IsOutputRedirected) with
+        | true -> (uint)(Console.ReadKey().Key)
         | _ -> 0u
+        |> ignore
+    ()
 
 //print message
 let message = "hello world"
@@ -160,5 +162,71 @@ let greet (Default "random citizen" name) =
 greet None
 greet (Some "George")
 
+let subtractUnsigned (x : uint32) (y : uint32) =
+    assert (x > y)
+    let z = x - y
+    z
+let result1 = subtractUnsigned 2u 1u
+let result2 = subtractUnsigned 1u 2u
+
+// type aliases
+type Transform<'a> = 'a -> 'a
+let applyTransform (trans: Transform<'a>) (value: 'a) : 'a = 
+    trans value
+let increment : Transform<int> = fun x -> x + 1
+let incrementResult = applyTransform increment 5
+
+let function1 (x: 'T) (y: 'T) = printfn "%A, %A" x y
+let function2<'A, 'B> (x: 'A) (y: 'B) = printfn "%A, %A" x y
+let _ = function1 1 4
+let _ = function2 "a" "b"
+
+[<Measure>] type degC
+[<Measure>] type degF
+let convertCtoF ( temp : float<degC> ) = 9.0<degF> / 5.0<degC> * temp + 32.0<degF>
+let convertFtoC ( temp: float<degF> ) = 5.0<degC> / 9.0<degF> * ( temp - 32.0<degF>)
+let degreesFahrenheit temp = temp * 1.0<degF>
+let degreesCelsius temp = temp * 1.0<degC>
+
+let temperatureF = degreesFahrenheit 50.0
+let temperatureC = degreesCelsius 50.0
+
+let celsius = convertFtoC temperatureF / (1.0<degC>)
+let fahrenheit = convertCtoF temperatureC / (1.0<degF>)
+
+[<Measure>] type km
+[<Measure>] type h
+
+let speed = 60<km/h>
+let time = 2<h>
+let distance = speed * time  // This is correctly inferred as km
+
+
+type OptionBuilder() =
+    member _.Return(x) = Some x
+    member _.Bind(value, apply) =
+        match value with
+        | Some result -> apply result
+        | None -> None
+    member _.Zero() = None
+let option = OptionBuilder()
+
+let tryDivide x y =
+    if y = 0.0 then None
+    else Some (x / y)
+
+let computation = option {
+    let! result1 = tryDivide 10.0 2.0
+    let! result2 = tryDivide result1 5.0
+    let! result3 = tryDivide result2 1.0
+    let! result4 = tryDivide result3 3.0
+    return result2
+}
+
+match computation with
+| Some value -> printfn "Result: %f" value
+| None -> printfn "An error occurred"
+
+
 // end
-do waitKeyboard() |> ignore
+do waitKeyboard()
